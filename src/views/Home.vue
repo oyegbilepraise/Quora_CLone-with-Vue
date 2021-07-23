@@ -51,8 +51,8 @@
         <br />
         <p class="mt-4">
           Forget password?
-          <span class="mx-5 bg-primary text-white p-2 login_btn" @click="Login"
-            >Login</span
+          <button class="mx-5 btn btn-primary btn-sm text-white p-2 login_btn" @click="Login"
+            >Login</button
           >
         </p>
       </div>
@@ -104,6 +104,7 @@ export default {
         if (result) {
           this.arr.push({email: this.email, password: this.password})
           localStorage.setItem('QuoraLogin', JSON.stringify(this.arr))
+          alert('Loggin Succesfully')
           this.$router.push(`/Quora/${result.id}`);
         }
       } else {
@@ -130,9 +131,7 @@ body {
   position: relative;
   margin-left: 40%;
 }
-.login_btn {
-  border-radius: 30px;
-}
+
 .line {
   width: 1px !important;
   border-right: none !important;
