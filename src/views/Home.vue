@@ -84,6 +84,7 @@ export default {
       v$: useValidate(),
       email: "",
       password: "",
+            arr: []
     };
   },
   validations() {
@@ -95,14 +96,14 @@ export default {
   methods: {
     Login() {
       this.v$.$validate();
-      console.log(this.email);
-      console.log(this.password);
       if (!this.v$.$error) {
         let store = JSON.parse(localStorage.getItem("Quora"));
         let result = store.find(
           (res) => res.email === this.email && res.password === this.password
         );
         if (result) {
+          this.arr.push({email: this.email, password: this.password})
+          localStorage.setItem('QuoraLogin', JSON.stringify(this.arr))
           this.$router.push(`/Quora/${result.id}`);
         }
       } else {

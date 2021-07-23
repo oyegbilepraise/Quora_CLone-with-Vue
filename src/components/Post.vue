@@ -180,7 +180,6 @@ export default {
         time: time,
         postedBy: this.currentUser.Username,
       });
-      console.log(result.Drafts);
       let index = store.indexOf(result);
       store[index] = result;
       localStorage.setItem("Quora", JSON.stringify(store));
@@ -302,7 +301,6 @@ export default {
           store[ind] = postOwner;
           localStorage.setItem("Quora", JSON.stringify(store));
           this.like = false;
-          console.log(this.like);
         } else if (this.likes === false) {
           let store = JSON.parse(localStorage.getItem("Quora"));
           let postOwner = store.find((res) => res.Username === owner);
@@ -325,7 +323,6 @@ export default {
           );
           let post = result.post.find((val) => val.id === ident);
           post.likes++;
-          console.log(post.likes);
 
           let index = store.indexOf(post);
           store[index] = post;
@@ -341,7 +338,6 @@ export default {
           );
           let post = result.post.find((val) => val.id === ident);
           post.likes--;
-          console.log(post.likes);
 
           let index = store.indexOf(post);
           store[index] = post;
@@ -375,7 +371,6 @@ export default {
       let index = store.indexOf(postOwner);
       store[index] = postOwner;
       localStorage.setItem("Quora", JSON.stringify(store));
-      // console.log(postOwner.followers);
       this.followers.push(this.currentUser.Username);
     },
 
@@ -387,8 +382,6 @@ export default {
       let post = postOwner.bookmark.filter(
         (val) => val.content === d.content && val.time === d.time
       );
-      console.log(postOwner.post);
-      console.log(post);
       if (post.length === 0) {
         postOwner.bookmark.unshift({
           content: d.content,

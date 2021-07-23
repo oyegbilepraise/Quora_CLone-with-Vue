@@ -73,18 +73,24 @@ import LandingPage from "../components/LandingPage.vue";
 export default {
   components: { Post, LandingPage },
   mounted() {
-    let store = JSON.parse(localStorage.getItem("Quora"));
-    let result = store.find(
-      (res) => Number(res.id) === Number(this.$route.params.id)
-    );
-    // console.log(result);
-    this.currentUser = result;
-    this.user = result;
-    this.interest = result.spaces;
-    this.mySpace = result.interested;
-    this.followers = result.followers;
-    this.bookmark = result.bookmark;
-    // this.myInterested = result.interested
+    let login = JSON.parse(localStorage.getItem('QuoraLogin'))
+    if(login){
+      let store = JSON.parse(localStorage.getItem("Quora"));
+      let result = store.find(
+        (res) => Number(res.id) === Number(this.$route.params.id)
+      );
+      this.currentUser = result;
+      this.user = result;
+      this.interest = result.spaces;
+      this.mySpace = result.interested;
+      this.followers = result.followers;
+      this.bookmark = result.bookmark;
+    }
+    else{
+      alert('kindly login')
+      this.$router.push('/')
+      
+    }
   },
   data() {
     return {

@@ -226,7 +226,7 @@ export default {
 
   methods: {
     Logout() {
-      console.log("ksdbfkjlsfbuij");
+      localStorage.removeItem('QuoraLogin')
       this.$router.push("/");
     },
   },
